@@ -1,0 +1,41 @@
+
+<div class="container mt-3">
+    <h2 class="float-left" style="color: rgb(43, 112, 4);">List Of Teachers</h2>
+    <button class="btn btn-success float-right" (click)="addTeacher()">Add Teacher</button>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Name</th>
+            <th>Email Id</th>
+            <th>Role</th>
+            <th>Mobile</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of teacher">
+
+            <td>{{t.name}}</td>
+            <td>{{t.email}}</td>
+            <td>{{t.role}}</td>
+            <td>{{t.mobile}}</td>
+            <td>
+                <button type="button" (click)="updateRecordTeacher(t.email)" class="btn btn-info">Update</button>
+            </td>
+            <td>
+                <button type="button" (click)="deleteTeacher(t.email)" class="btn btn-danger">Delete</button>
+            </td>
+            
+        </tr>
+    </tbody>
+
+</table>
+
+</div>
+
+
+<div class="alert alert-danger alert-dismissible fade show" *ngIf="deletedSuccess"  role="alert">
+    <strong>Teacher </strong> Deleted Successfully
+   
+  </div>

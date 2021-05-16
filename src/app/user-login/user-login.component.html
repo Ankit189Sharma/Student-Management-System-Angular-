@@ -1,0 +1,71 @@
+<div class="container-fluid mt-3">
+<form [formGroup]="loginForm"  (ngSubmit)="loginSuccess()">
+  <div class="container">
+    <h1>Login</h1>
+    <p>Please provide your login details.</p>
+    
+<div *ngIf="ifError">
+  <br><div  class="alert alert-danger" role="alert">
+           {{msg}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>  
+        </div>
+
+   
+        
+          
+    </div>
+    
+    <hr>
+
+
+<!-- 
+    <div class="text-danger">{{msg}}</div> -->
+    <label ><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email"  class="form-control" style="background-color: #fff;"   formControlName="email"   >
+
+    <div
+    *ngIf="loginForm.get('email').touched &&loginForm.get('email').hasError('required')"
+    style="color:red">Enter email Address</div>
+
+<div
+    *ngIf="loginForm.get('email').touched &&loginForm.get('email').hasError('email') "
+    style="color:red">Enter Valid email Address</div>
+
+    <!-- <div *ngIf="loginForm.get('email').invalid " class="text-danger">Enter Valid email Address</div> -->
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" class="form-control" style="background-color: #fff;" placeholder="Enter Password" name="psw"   formControlName="password">
+
+    <div *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')" style="color: red;">
+      Enter Password
+    </div>
+
+
+    <hr>
+    
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"   formControlName="check">
+      <label class="form-check-label" for="flexCheckChecked">
+        By creating an account you agree to our Terms & Privacy
+      </label>
+    </div>
+<br>
+    <button type="submit" class="btn btn-success  btn-block" [disabled]="!loginForm.valid" >Login</button>
+   
+
+  </div>
+  
+  <div class="container signin">
+    <p>Don't have an account? &nbsp;
+      <button type="button" class="btn btn-primary" (click)="signUp()" >
+          SignUp
+      </button>
+    </p>
+
+  </div>
+</form>
+</div>
+
+

@@ -1,0 +1,80 @@
+<div class="container offset-md-1 mt-3">
+    <h3 style="color: rgb(165, 151, 21);">Add Student Details</h3>
+<form (ngSubmit)="onSubmit()" #addStudent="ngForm">
+
+     <div class="form-group">
+        
+        <label for="">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="employee.name" name="name"
+         #name="ngModel" required
+        > 
+        <span class="text-danger"
+                                *ngIf="(name.touched || addStudent.submitted) && name.errors?.required">
+                                Name is required
+                            </span>
+
+     </div>
+
+     <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" class="form-control" [(ngModel)]="employee.email" name="email"
+        #email="ngModel" required email
+        > 
+
+        <span class="text-danger"
+                                *ngIf="(email.touched || addStudent.submitted) && email.errors?.required">
+                                Email is required
+                            </span>
+                            <span class="text-danger" *ngIf="email.touched && email.errors?.email">
+                                Enter a valid email address
+                            </span>
+     </div>
+
+     
+     <div class="form-group">
+        
+        <label for="">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="employee.password" name="password"
+        #password="ngModel" required
+        > 
+        <span class="text-danger"
+                                *ngIf="(password.touched ||addStudent.submitted) && password.errors?.required">
+                                Password is required
+                            </span>
+
+     </div>
+     
+     <div class="form-group">
+        
+        <label for="">Mobile</label>
+        <input type="text" class="form-control" [(ngModel)]="employee.mobile" name="mobile"
+        #mobNumber="ngModel" 
+        [pattern]="mobNumberPattern" required
+        > 
+        <div *ngIf="mobNumber.errors">  
+         <div *ngIf="mobNumber.errors.pattern" style="color: red;">  
+           Mobile number not valid.  
+         </div>   
+       </div> 
+
+     </div>
+
+     
+     <div class="form-group">
+        
+        <label for="">Role</label>
+        <input type="text" class="form-control" placeholder="student"  [(ngModel)]="employee.role" name="role"
+        #role="ngModel" required
+        > 
+        <div *ngIf="role.touched&& role.errors?.required" style="color:  red;">
+         Enter role
+        </div>
+
+     </div>
+     <button class="btn btn-success btn-lg align-self-center" type="submit"
+      [disabled]="!addStudent.valid"
+     >
+        Create New Student
+     </button>
+</form>
+</div>

@@ -1,0 +1,85 @@
+<div class="container offset-md-1 mt-3">
+    <h3 style="color: rgb(165, 151, 21);">Add Details</h3>
+<form (ngSubmit)="onSubmit()" #addTeacher="ngForm" >
+
+     <div class="form-group">
+        
+        <label for="">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="employee.name" name="name"
+        #name="ngModel" required
+        > 
+
+        <!-- Name validations -->
+        <span class="text-danger"
+        *ngIf="name.touched  && name.errors?.required">
+        Name is required
+    </span>
+
+
+     </div>
+
+     <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" class="form-control" [(ngModel)]="employee.email" name="email"
+        #email="ngModel" required email
+        > 
+        <span class="text-danger"
+        *ngIf="email.touched  && email.errors?.required">
+        Email is required
+    </span>
+    <span class="text-danger" *ngIf="email.touched && email.errors?.email">
+        Enter a valid email address
+    </span>
+
+
+     </div>
+
+     
+     <div class="form-group">
+        
+        <label for="">Password</label>
+        <input type="password" class="form-control" [(ngModel)]="employee.password" name="password"
+        #password="ngModel" required
+        > 
+        <span class="text-danger"
+        *ngIf="password.touched  && password.errors?.required">
+        Password is required
+    </span>
+     </div>
+     
+     <div class="form-group">
+        
+        <label for="">Mobile</label>
+        <input type="text" class="form-control" [(ngModel)]="employee.mobile" name="mobile" required
+        #mobNumber="ngModel" [pattern]="mobNumberPattern"
+        > 
+
+        <div *ngIf="mobNumber.errors">  
+         <div *ngIf="mobNumber.errors.pattern" style="color: red;">  
+           Mobile number not valid.  
+         </div>   
+       </div> 
+
+     </div>
+
+     
+     <div class="form-group">
+        
+        <label for="">Role</label>
+        <input type="text" class="form-control" value="teacher" [(ngModel)]="employee.role" name="role"
+        
+        #role="ngModel" required
+        > 
+        <span class="text-danger"
+        *ngIf="role.touched  && role.errors?.required">
+        Role is required
+    </span>
+
+     </div>
+     <button class="btn btn-success btn-lg align-self-center" type="submit" 
+      [disabled]="!addTeacher.valid"
+     >
+        Create Employee
+     </button>
+</form>
+</div>
